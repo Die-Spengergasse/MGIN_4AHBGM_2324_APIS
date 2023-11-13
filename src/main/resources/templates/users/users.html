@@ -1,0 +1,48 @@
+<!--
+    Created: 2022-12-10
+    Author: Rudolf Radlbauer
+
+    Description:
+    ============
+    page for user administration
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Users</title>
+        <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+        <script src="/users/users.js"></script>
+    </head>
+    <body onload="loadUsers()">
+        <div th:replace="~{/masterpage/masterpage :: menu}"/>
+        <div class="container">
+            <h1>User list</h1>
+            <table class="table" id="user_table"></table>
+
+
+            <dialog  id="new_user">
+                <h2>New User</h2>
+                    <p>
+                        <label for="username">User Name: </label>
+                        <input id="username" type="text" />
+                    </p>
+                    <p>
+                        <label for="password">Password: </label>
+                        <input id="password" type="password" />
+                    </p>
+                        <button onclick="newUser()">Save</button>
+                        <button onclick="closeDialog()">Cancel</button>
+            </dialog>
+            <script>
+                function closeDialog(){document.querySelector("#new_user").close();}
+            </script>
+
+            <button onclick="document.querySelector('#new_user').showModal()">Add New User</button>
+
+        </div>
+
+        <section th:replace="~{/masterpage/masterpage :: footer}"/>
+    </body>
+</html>

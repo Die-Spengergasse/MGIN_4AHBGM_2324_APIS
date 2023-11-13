@@ -1,0 +1,24 @@
+<!--
+    Created: 2022-12-10
+    Author: Rudolf Radlbauer
+
+    Description:
+    ============
+    welcome page visible to all visitors of our web site
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome</title>
+        <th:block th:insert="~{/masterpage/masterpage :: assets}"/>
+    </head>
+    <body>
+        <div th:replace="~{/masterpage/masterpage :: menu}"/>
+        <div class="container">
+            <h1>Welcome</h1>
+        </div>
+        <section th:replace="~{/masterpage/masterpage :: footer}"/>
+    </body>
+</html>

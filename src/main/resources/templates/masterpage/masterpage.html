@@ -1,0 +1,78 @@
+<!--
+    Created: 2022-12-10
+    Author: Rudolf Radlbauer
+
+    Description:
+    ============
+
+    master page (fragments)
+    the following fragments should be included in every single page:
+
+    for scripts (bootstrap):
+    <th:block th:include="masterpage/masterpage.html :: assets"/>
+
+    on top of body (for menus):
+    <div th:replace="/masterpage/masterpage.html :: menu"/>
+
+    on bottom of body (footer):
+    <section th:replace="/masterpage/masterpage.html :: footer"/>
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>masterpage</title>
+    <th:block th:fragment="assets">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </th:block>
+</head>
+<body>
+    <div th:fragment="menu">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">MedPX</a>
+                </div>
+                <!--------------- menu items for all users (public) ---------------->
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/pub/welcome">Home</a></li>
+                </ul>
+                <!--------------- menu items for admins ---------------->
+                <ul class="nav navbar-nav" sec:authorize="hasRole('ADMIN')">
+                    <li><a href="/admin/users">Users</a></li>
+                </ul>
+                <!--------------- menu items for doctors ---------------->
+                <ul class="nav navbar-nav" sec:authorize="hasRole('DOCTOR')">
+                    <li><a href="/doctor/patients">Patients</a></li>
+                </ul>
+
+                <!--------------- LOGO ---------------->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><img src="/pub/Logo.jpg" alt="LOGO"></li>
+                </ul>
+                <!--------------- menu items for login ---------------->
+                <ul class="nav navbar-nav navbar-right" sec:authorize="!isAuthenticated">
+                    <li><a href="/pub/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated">
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <section class="navbar navbar-fixed-bottom" th:fragment="footer">
+        <div class="container-fluid">
+            <hr/>
+            <h2>&copy; 4AHBGM</h2>
+        </div>
+    </section>
+
+</body>
+</html>

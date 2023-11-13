@@ -1,0 +1,44 @@
+<!--
+    Created: 2022-12-10
+    Author: Rudolf Radlbauer
+
+    Description:
+    ============
+    login page
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+    </head>
+
+<body>
+    <div th:replace="~{/masterpage/masterpage :: menu}"/>
+
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <div class="container">
+        <form class="form-signin" th:action="@{login}" method="post">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <p>
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+            </p>
+            <p>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </p>
+            <input name="_csrf" type="hidden" value="84bdff60-068e-4716-95b7-92c6770043c3" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <section th:replace="~{/masterpage/masterpage :: footer}"/>
+    </div>
+</body>
+</html>
