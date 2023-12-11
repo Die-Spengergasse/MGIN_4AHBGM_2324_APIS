@@ -40,6 +40,7 @@ public class WebSecurityConfig {
 //                        .requestMatchers("/").permitAll()                   // start page
 //                        .requestMatchers("/public/**").permitAll()          // public pages
 //                        .requestMatchers("/pub/**").permitAll()          // public pages
+//                        .requestMatchers("/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/doctor/**").hasRole("DOCTOR")
 //                        .requestMatchers("/api/doctor/**").hasRole("DOCTOR")

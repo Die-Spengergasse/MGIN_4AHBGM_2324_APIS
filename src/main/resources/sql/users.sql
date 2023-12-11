@@ -3,6 +3,8 @@ INSERT INTO `roles` (`name`, `description`) VALUES
     ('ADMIN', 'admin users'),
     ('DOCTOR', 'doctors');
 
+-- admin/admin
+-- doctor/doctor
 INSERT INTO `users` (`name`, `password`) VALUES
     ('admin', '$2a$10$PsN.qU7kNqrbas/RmxN31ekarK6F3H70ToE9UE8S9sxj2xKheMg6e'),
     ('doctor', '$2a$10$OkQrAFLyg5MMUZ87uG4Rs.Oj50HES.dSe/gMgHwBjn7f3xxhYAz4G');
