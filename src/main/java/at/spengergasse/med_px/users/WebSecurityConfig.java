@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                         // remove the following line for production mode
                                 .anyRequest().permitAll()
                         // uncomment the following line for access controll
+                        // (does not work with h2-console enabled in application.properties)
 //                        .requestMatchers("/").permitAll()                   // start page
 //                        .requestMatchers("/public/**").permitAll()          // public pages
 //                        .requestMatchers("/pub/**").permitAll()          // public pages
