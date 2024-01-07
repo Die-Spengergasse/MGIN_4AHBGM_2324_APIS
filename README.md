@@ -9,7 +9,18 @@ The page ```/resources/templates/users/users.html``` shows how this works.
 
 ## Adding new functionality
 In order to realize a project with many contributors with as little chaos as possible, 
-it is necessary that everyone adheres to a few rules. 
+it is necessary that everyone adheres to a few rules.
+
+Here you can see the basic structure of the project:
+
+![file structure](file_structure.png)
+
+Put your java classes in a sub package of ```at.spengergasse.mex_px```.
+
+Put your HTML pages in a subfolder of ```resources/templates```.
+
+Put static resources (scripts, stylesheets, ...) in a subfolder of ```resources/static```.
+
 
 ### HTML pages
 The Thymeleaf mechanism works in such a way that HTML pages must be located in the ```resources/templates``` folder.
