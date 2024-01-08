@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class City {
+public class City extends Contact{
     @Id
     private int zip;
     private String name;
