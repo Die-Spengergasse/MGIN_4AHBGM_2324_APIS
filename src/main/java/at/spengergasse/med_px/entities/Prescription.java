@@ -2,11 +2,13 @@ package at.spengergasse.med_px.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 
 @Entity
 public class Prescription {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -24,4 +26,10 @@ public class Prescription {
     @ManyToOne
     @JoinColumn(name = "medication_id")
     private Medication medication;
+
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "dosage")
+    private String dosage;
 }

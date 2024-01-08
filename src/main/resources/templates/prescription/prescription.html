@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rezept-Formular</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+  <script src="/prescription/prescription.js"></script>
+</head>
+
+<body style="background-color: aliceblue;" onload="loadUsers()">
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="text-center">Rezept erstellen/ändern</h1>
+    </div>
+    <div class="card-body">
+      <form action="/recipes.html" method="GET">
+        <div class="mb-3">
+          <label class="text-primary" for="doctor" class="form-label">Verschreibender Arzt:</label>
+          <select id="doctor" name="doctor" class="form-control" required>
+            <option value="" disabled selected>Bitte auswählen</option>
+            <option value="doc1">Dr. Brown</option>
+            <option value="doc2">Dr. Miau</option>
+            <option value="doc3">Dr. House</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="date" class="form-label">Datum:</label>
+          <input type="date" id="date" name="date" class="form-control" required></input>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="patientName" class="form-label">Patientenname:</label>
+          <select id="patientName" name="patientName" class="form-control" required>
+            <option value="" disabled selected>Bitte auswählen</option>
+            <option value="Patient1">Lisa</option>
+            <option value="Patient2">Selina</option>
+            <option value="Patient3">Medine</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="recipeName" class="form-label">Rezeptname:</label>
+          <input type="text" id="recipeName" name="recipeName" placeholder="Name des Rezeptes" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="medication" class="form-label">Medikament:</label>
+          <select id="medication" name="medication" class="form-control" required>
+            <option value="" disabled selected>Bitte auswählen</option>
+            <option value="med1">Medikament1</option>
+            <option value="med2">Medikament2</option>
+            <option value="med3">Medikament3</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="medDescription" class="form-label">Beschreibung des Medikaments:</label>
+          <textarea id="medDescription" name="medDescription" class="form-control" rows="4" placeholder="Geben Sie hier die Medikamentenbeschreibung ein" required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="text-primary" for="dosage" class="form-label">Dosierung:</label>
+          <input id="dosage" type="text" name="dosage" placeholder="x-x-x-x" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <button id="submit" type="button" class="btn btn-primary" onclick="savebutton()">Rezept speichern</button>
+        </div>
+
+        <div class="mb-3">
+          <table id="recipetable" class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Verschreibender Arzt</th>
+              <th>Datum</th>
+              <th>Patientenname</th>
+              <th>Rezeptname</th>
+              <th>Medikament</th>
+              <th>Beschreibung des Medikaments</th>
+              <th>Dosierung</th>
+            </tr>
+            </thead>
+            <tbody id="data"></tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
+</body>
+</html>
