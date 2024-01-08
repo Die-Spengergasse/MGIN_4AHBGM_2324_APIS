@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anamnese Formular</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!---<script rel="stylesheet" href="anamnese.js"></script> --->
+    <link rel="stylesheet" href="formular.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Anamnese Formular</h1>
+
+        <h2>Stammdaten</h2>
+        <form action="/formular.html" method="Post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="na" name="name" required>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihren Namen ein.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="geburtsdatum" class="form-label">Geburtsdatum:</label>
+                <input type="date" class="form-control" id="gd" name="geburtsdatum" required>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihr Geburtsdatum ein.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="svnr" class="form-label">SVNR:</label>
+                <input type="text" class="form-control" id="sv" name="svnr" required>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihre SVNR ein.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="geschlecht" class="form-label">Geschlecht:</label>
+                <select class="form-select" id="ges" name="geschlecht" required>
+                    <option value="" disabled selected>Wählen Sie Ihr Geschlecht aus</option>
+                    <option value="männlich">Männlich</option>
+                    <option value="weiblich">Weiblich</option>
+                </select>
+                <div class="invalid-feedback">
+                    Bitte wählen Sie Ihr Geschlecht aus.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="allergien" class="form-label">Allergien:</label>
+                <select class="form-select" id="al" name="allergien[]" multiple>
+                    <option value="pollen">Pollen</option>
+                    <option value="nüsse">Nüsse</option>
+                    <option value="milch">Milch</option>
+                    <option value="eier">Eier</option>
+                </select>
+            </div>
+            <br>
+            <h2>Medikation</h2>
+            <div class="mb-3">
+                <label for="medikamente" class="form-label">Aktuelle Medikamente:</label>
+                <textarea class="form-control" id="med" name="medikamente"></textarea>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihre Medikamente ein.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="vorherigekrankheiten" class="form-label">Vorherige Krankheiten:</label>
+                <textarea class="form-control" id="vk" name="vorherigekrankheiten"></textarea>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihre Vorherigen Krankheiten ein.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="familienanamnese" class="form-label">Familienanamnese:</label>
+                <textarea class="form-control" id="fam" name="familienanamnese"></textarea>
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihre Familienanamnese ein.
+                </div>
+            </div>
+            <br>
+            <h4>- Kreuzen Sie zutreffendes Bitte an -</h4>
+            <div class="mb-3">
+                <label class="form-label">Befinden Sie sich zur Zeit in ärztlicher Behandlung?</label>
+                <br>
+                <label for="ja">Ja</label>
+                <input type="checkbox" id="ja" name="ja">
+                <div class="invalid-feedback">
+                    Bitte kreuzen Sie ein Kästchen an.
+                </div>
+                <label for="nein">Nein</label>
+                <input type="checkbox" id="nein" name="nein">
+                <div class="invalid-feedback">
+                    Bitte kreuzen Sie ein Kästchen an.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Haben Sie derzeit irgendwelche Allgemeinbeschwerden?</label>
+                <br>
+                <label for="ja">Ja</label>
+                <input type="checkbox" id="ja" name="ja">
+                <div class="invalid-feedback">
+                    Bitte kreuzen Sie ein Kästchen an.
+                </div>
+                <label for="nein">Nein</label>
+                <input type="checkbox" id="nein" name="nein">
+                <div class = "invalid-feedback">
+                    Bitte kreuzen Sie ein Kästchen an.
+                </div>
+            </div>
+            <br>
+            <input type="submit" id="submit" class="btn btn-primary"></input>
+            <input type="reset" id="reset" class="btn btn-danger"></input>
+            <br>
+            <br>
+            <input type="button" id="save" class="btn save-button">Speichern</input>
+        </form>
+        
+        <!-- Tabelle zur Anzeige und Bearbeitung der Daten -->
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Geburtsdatum</th>
+                    <th>SVNR</th>
+                    <th>Geschlecht</th>
+                    <th>Allergien</th>
+                    <th>Medikamente</th>
+                    <th>Vorherige Krankheiten</th>
+                    <th>Familienanamnese</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body">
+                
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    let datenObjekte = [];
+
+    function speichernDaten() {
+        const name = document.querySelector('#na').value;
+        const geburtsdatum = document.querySelector('#gd').value;
+        const svnr = document.querySelector('#sv').value;
+        const geschlecht = document.querySelector('#ges').value;
+        const allergien = document.querySelector('#al').value;
+        const medikamente = document.querySelector('#med').value;
+        const vorherigekrankheiten = document.querySelector('#vk').value;
+        const familienanamnese = document.querySelector('#fam').value;
+
+        const datenObjekt = {
+            name: name,
+            geburtsdatum: geburtsdatum,
+            svnr: svnr,
+            geschlecht: geschlecht,
+            allergien: allergien,
+            medikamente: medikamente,
+            vorherigekrankheiten: vorherigekrankheiten,
+            familienanamnese: familienanamnese
+        };
+
+        datenObjekte.push(datenObjekt);
+
+        // Daten zur Tabelle hinzufügen
+        const tableBody = document.getElementById('data-table-body');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${geburtsdatum}</td>
+                <td>${svnr}</td>
+                <td>${geschlecht}</td>
+                <td>${allergien}</td>
+                <td>${medikamente}</td>
+                <td>${vorherigekrankheiten}</td>
+                <td>${familienanamnese}</td>
+                <td>
+                    <button onclick="editRow(this)">Edit</button>
+                </td>
+            `;
+        tableBody.appendChild(newRow);
+
+
+        document.querySelector('form').reset();
+    }
+
+    function editRow(button) {
+        const row = button.closest('tr');
+        const cells = row.getElementsByTagName('td');
+        document.querySelector('#na').value = cells[0].textContent;
+        document.querySelector('#gd').value = cells[1].textContent;
+        document.querySelector('#sv').value = cells[2].textContent;
+        document.querySelector('#ges').value = cells[3].textContent;
+        document.querySelector('#al').value = cells[4].textContent;
+        document.querySelector('#med').value = cells[5].textContent;
+        document.querySelector('#vk').value = cells[6].textContent;
+        document.querySelector('#fam').value = cells[7].textContent;
+
+        row.remove();
+    }
+
+    document.querySelector('#submit').addEventListener('click', speichernDaten);
+    document.querySelector('#save').addEventListener('click', speichernDaten);
+
+    fetch("/api/anamnese", {
+        method : "post",
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(anamnese)
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = 'Anamneseformular.html';
+        }
+        else{
+            alert("error saving anamnese : " + response.statusText);
+        }
+    });
+</script>
+
+</body>
+</html>
