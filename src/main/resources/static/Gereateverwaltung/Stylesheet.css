@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.table-container {
+    width: 70%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+}
+.form-container {
+    width: 25%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #333;
+    color: white;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.selected {
+    background-color: #a72a2a; 
+}
+#Geraete tbody tr:hover {
+    background-color: #808485; /*--- this is a blue color when hover ---*/
+    cursor: pointer; }
+ #Geraete tbody tr:focus {
+    background-color: #f3f3f3; /*--- this is a gray color when clicked---*/
+ }

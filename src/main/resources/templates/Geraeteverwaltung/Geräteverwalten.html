@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geräte Verwaltung</title>
+    <link rel="stylesheet" href="../../../../../../Arztpraxis-Systems/Stylesheet.css">
+    <script src="../../../../../../Arztpraxis-Systems/script.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Geräte Verwaltung</h1>
+    </div>
+    <div class="container">
+        <div class="table-container">
+            <table id="Geraete">
+                <thead>
+                    <tr>
+                        <th>Geräteid</th>
+                        <th>Gerätnamen</th>
+                        <th>Station</th>
+                        <th>Kategorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-container">
+            <form>
+                <p>Geräteid <input type="text" id="gerateid"></p>
+                <p>Gerätnamen <input type="text" id="geratenamen"></p>
+                <p>Station <input type="text" id="station"></p>
+                <p>Kategorie <input type="text" id="kategorie"></p>
+                <div>
+                   <button type="button" onclick="updateData()">Update/insert</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
