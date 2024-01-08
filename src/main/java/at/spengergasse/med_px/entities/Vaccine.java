@@ -9,4 +9,6 @@ public class Vaccine extends Medication{
     @Id
     @GeneratedValue
     private Long id;
+
+    private String typeOfVac;
 }
