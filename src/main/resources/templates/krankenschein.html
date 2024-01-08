@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krankenschein</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 10px;
+            text-align: center;
+            background-color: aliceblue;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            width: 40%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles for the table */
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .editButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Arbeitsunfähigkeit</h1>
+<form onsubmit="submitForm()">
+    <label for="patientenName">Name des Patienten:</label>
+    <input type="text" id="patientenName" name="patientenName" required>
+
+    <label for="diagnose">Diagnose:</label>
+    <input type="text" id="diagnose" name="diagnose" required>
+
+    <label for="arztName">Name des Arztes:</label>
+    <input type="text" id="arztName" name="arztName" required>
+
+    <label for="krankenhaus">Krankenhaus:</label>
+    <select id="krankenhaus" name="krankenhaus" required>
+        <option value="Allgemeines Krankenhaus">Allgemeines Krankenhaus</option>
+        <option value="Donausspital">Donauspital</option>
+        <option value="Döblinger Spital">Döblinger Spital</option>
+    </select>
+
+    <label for="ausstellungsdatum">Ausstellungsdatum:</label>
+    <input type="date" id="ausstellungsdatum" name="ausstellungsdatum" required>
+
+    <label for="gültigBis">Gültig bis:</label>
+    <input type="date" id="gültigBis" name="gültigBis" required>
+
+    <input type="submit" value="Arbeitsunfähigkeit drucken">
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name des Patienten</th>
+        <th>Diagnose</th>
+        <th>Name des Arztes</th>
+        <th>Krankenhaus</th>
+        <th>Ausstellungsdatum</th>
+        <th>Gültig bis</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+    let formValues = [];
+    let editingIndex = -1;
+
+    window.onload = function() {
+        loadFromLocalStorage();
+        updateTable();
+    };
+
+    function loadFromLocalStorage() {
+        const storedData = localStorage.getItem('formValues');
+        if (storedData) {
+            formValues = JSON.parse(storedData);
+        }
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem('formValues', JSON.stringify(formValues));
+    }
+
+    function submitForm() {
+        event.preventDefault();
+
+        var patientenName = document.getElementById('patientenName').value;
+        var diagnose = document.getElementById('diagnose').value;
+        var arztName = document.getElementById('arztName').value;
+        var krankenhaus = document.getElementById('krankenhaus').value;
+        var ausstellungsdatum = document.getElementById('ausstellungsdatum').value;
+        var gueltigBis = document.getElementById('gültigBis').value;
+
+        var formData = {
+            patientenName: patientenName,
+            diagnose: diagnose,
+            arztName: arztName,
+            krankenhaus: krankenhaus,
+            ausstellungsdatum: ausstellungsdatum,
+            gueltigBis: gueltigBis
+        };
+
+        if (editingIndex > -1) {
+            formValues[editingIndex] = formData;
+            editingIndex = -1;
+        } else {
+            formValues.push(formData);
+        }
+
+        updateTable();
+        saveToLocalStorage();
+        document.querySelector('form').reset();
+    }
+
+    function updateTable() {
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = '';
+
+        formValues.forEach((data, index) => {
+            const row = tableBody.insertRow();
+            Object.values(data).forEach(value => {
+                const cell = row.insertCell();
+                cell.textContent = value;
+            });
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.classList.add('editButton');
+            editButton.onclick = () => fillForm(index);
+            const editCell = row.insertCell();
+            editCell.appendChild(editButton);
+        });
+    }
+
+    function fillForm(index) {
+        var data = formValues[index];
+        document.getElementById('patientenName').value = data.patientenName;
+        document.getElementById('diagnose').value = data.diagnose;
+        document.getElementById('arztName').value = data.arztName;
+        document.getElementById('krankenhaus').value = data.krankenhaus;
+        document.getElementById('ausstellungsdatum').value = data.ausstellungsdatum;
+        document.getElementById('gültigBis').value = data.gueltigBis;
+
+        editingIndex = index;
+    }
+</script>
+</body>
+</html>
