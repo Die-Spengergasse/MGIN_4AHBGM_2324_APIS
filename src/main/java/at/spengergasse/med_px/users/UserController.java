@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * REST controller for a web service accessing users and roles
  */
+
 @RestController
 @RequestMapping("/api/admin/users")
 public class UserController {

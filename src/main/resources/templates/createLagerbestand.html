@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lagerbestand</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="lagerbestand.js"></script>
+</head>
+  <div class="container-fluid p-5 bg-primary text-white text-center ">
+
+  <h1>Verbrauchsmaterial Lagerbestand</h1>
+</div>
+<br>
+<br>
+<body>
+<div class="container">
+
+<form id="lagerbenstand">
+  <label for="item">Verbrauchsmaterial:</label>
+  <select id="item" name="item" id="inputName">
+    <option value="Spritze">Spritze</option>
+    <option value="Verbandsmaterial">Verbandsmaterial</option>
+    <option value="Pflaster">Pflaster</option>
+    <option value="Katheter">Katheter</option>
+    <option value="Kompressoren">Kompressoren</option>
+    <option value="Zungenspachtel">Zungenspachtel</option>
+    <option value="Urinflaschen">Urinflaschen</option>
+    <option value="Stethoskop">Stethoskop</option>
+    <option value="Personenwage">Personenwage</option>
+    <option value="Schnelltest">Schnelltest</option>
+    <option value="Fieberthermometer">Fieberthermometer</option>
+  </select>
+
+  <label for="inputQuantity">Menge:</label>
+  <input type="number" id="inputQuantity" name="quantity" min="1">
+  <br>
+  <br>
+
+  <label for="fachnr">In welchem Fach befindet sich es?:</label>
+  <select id="fachnr" name="fachnr" id="inputFachnr">
+    <option value="Fachnr. 01">Fachnr. 01</option>
+    <option value="Fachnr. 02">Fachnr. 02</option>
+    <option value="Fachnr. 03">Fachnr. 03</option>
+    <option value="Fachnr. 04">Fachnr. 04</option>
+    <option value="Fachnr. 05">Fachnr. 05</option>
+    <option value="Fachnr. 06">Fachnr. 06</option>
+    <option value="Fachnr. 07">Fachnr. 07</option>
+  </select>
+
+  <br>
+  <br>
+
+  <button class="btn btn-primary" onclick="save_lagerbestand()">abschicken</button>
+
+  <a href="lagerbestandTabelle.html">Tabelle
+  </a>
+
+</form>
+<br>
+</script>
+</div>
+</body>
+</html>
