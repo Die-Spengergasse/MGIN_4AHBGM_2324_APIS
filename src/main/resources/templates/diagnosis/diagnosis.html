@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnosis Store</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+
+    <script src="diagnosis.js"></script>
+    <script src="diagnosis_other.js"></script>
+</head>
+<body onload="load_diagnosis()">
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+
+<div class="container">
+    <h1>Diagnosis List</h1>
+    <table class="table">
+        <thead>
+        <td>ID</td>
+        <td>Name</td>
+        <td>DiagnoseCode</td>
+        <td>Vorerkrankungen</td>
+        <td>Diagnosedatum</td>
+        <td>Diagnosebeschreibung</td>
+        </thead>
+        <tbody id="diagnosis_list"></tbody>
+    </table>
+    <a href="create_diagnosis.html">new diagnosis</a>
+</div>
+</body>
+</html>

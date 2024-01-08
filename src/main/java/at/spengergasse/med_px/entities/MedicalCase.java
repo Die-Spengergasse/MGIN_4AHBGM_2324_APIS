@@ -16,4 +16,6 @@ public class MedicalCase {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;    // the patient who has the case
+
+
 }

@@ -11,4 +11,6 @@ public class Icd10 {
     @Id
     private String code;        // the ICD10 code
     private String description; // the description of the ICD10 code
+
+
 }
