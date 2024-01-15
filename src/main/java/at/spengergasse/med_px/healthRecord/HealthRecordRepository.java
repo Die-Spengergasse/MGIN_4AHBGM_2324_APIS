@@ -1,4 +1,7 @@
 package at.spengergasse.med_px.healthRecord;
 
-public class HealthRecordRepository {
+import at.spengergasse.med_px.entities.HealthRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HealthRecordRepository extends JpaRepository<HealthRecord, String> {
 }
