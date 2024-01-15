@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/admin/prescription")
 public class PrescriptionControllers {
 
     @Autowired
