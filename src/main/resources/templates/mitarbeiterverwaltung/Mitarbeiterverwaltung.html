@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitarbeiterverwaltung - Krankenhaussystem</title>
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8f0;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #006400;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #006400;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #006400;
+            border-radius: 4px;
+        }
+
+        input[type="date"] {
+            border: 1px solid #006400;
+            border-radius: 4px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #006400;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+        }
+
+    </style>
+</head>
+<body>
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+<form action="/submit_mitarbeiter" method="post">
+    <h2>Mitarbeiterverwaltung</h2>
+
+    <label for="vorname">Vorname:</label>
+    <input type="text" id="vorname" name="vorname">
+
+    <label for="nachname">Nachname:</label>
+    <input type="text" id="nachname" name="nachname">
+
+    <label for="abteilung">Abteilung:</label>
+    <select id="abteilung" name="abteilung">
+        <option value="allgemeinmedizin">Allgemeinmedizin</option>
+        <option value="chirurgie">Chirurgie</option>
+        <option value="innere medizin">Innere Medizin</option>
+    </select>
+
+    <label for="geburtsdatum">Geburtsdatum:</label>
+    <input type="date" id="geburtsdatum" name="geburtsdatum">
+
+    <label for="geschlecht">Geschlecht:</label>
+    <label for="männlich">Männlich</label>
+    <input type="radio" id="männlich" name="geschlecht" value="männlich">
+    <label for="weiblich">Weiblich</label>
+    <input type="radio" id="weiblich" name="geschlecht" value="weiblich">
+
+    <input type="reset" value="Formular zurücksetzen">
+    <input type="submit" value="Mitarbeiter hinzufügen">
+</form>
+
+<!-- Hier wird die Tabelle für die Mitarbeiterdaten angezeigt -->
+<table id="mitarbeiterTable">
+    <tr>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Abteilung</th>
+        <th>Geburtsdatum</th>
+        <th>Geschlecht</th>
+        <th>Aktion</th>
+    </tr>
+</table>
+
+<script>
+    let editingIndex = -1; // Index der aktuell bearbeiteten Zeile
+
+    // Funktion zum Hinzufügen oder Aktualisieren einer Zeile
+    function addOrEditRow() {
+        const vorname = document.getElementById("vorname").value;
+        const nachname = document.getElementById("nachname").value;
+        const abteilung = document.getElementById("abteilung").value;
+        const geburtsdatum = document.getElementById("geburtsdatum").value;
+        const geschlecht = document.querySelector('input[name="geschlecht"]:checked').value;
+
+        const table = document.getElementById("mitarbeiterTable");
+        let row;
+
+        if (editingIndex === -1) {
+            // Neue Zeile hinzufügen
+            row = table.insertRow(-1);
+        } else {
+            // Bestehende Zeile aktualisieren
+            row = table.rows[editingIndex];
+        }
+
+        // Zellen für die Spalten erstellen und mit Daten füllen
+        row.innerHTML = `
+                <td>${vorname}</td>
+                <td>${nachname}</td>
+                <td>${abteilung}</td>
+                <td>${geburtsdatum}</td>
+                <td>${geschlecht}</td>
+                <td>
+                    <button onclick="editRow(this)">Bearbeiten</button>
+                    <button onclick="deleteRow(this)">Löschen</button>
+                </td>
+            `;
+
+        // Daten im Local Storage speichern
+        saveDataToLocalStorage();
+        editingIndex = -1; // Bearbeitungsindex zurücksetzen
+    }
+
+    // Funktion zum Bearbeiten einer Zeile
+    function editRow(button) {
+        const row = button.parentNode.parentNode;
+        editingIndex = row.rowIndex;
+
+        document.getElementById("vorname").value = row.cells[0].innerHTML;
+        document.getElementById("nachname").value = row.cells[1].innerHTML;
+        document.getElementById("abteilung").value = row.cells[2].innerHTML;
+        document.getElementById("geburtsdatum").value = row.cells[3].innerHTML;
+        const geschlechtValue = row.cells[4].innerHTML;
+        document.querySelector(`input[name="geschlecht"][value="${geschlechtValue}"]`).checked = true;
+    }
+
+    // Funktion zum Löschen einer Zeile
+    function deleteRow(button) {
+        const row = button.parentNode.parentNode;
+        row.remove();
+        saveDataToLocalStorage();
+    }
+
+    // Funktion zum Speichern von Daten im Local Storage
+    function saveDataToLocalStorage() {
+        const tableRows = document.querySelectorAll("#mitarbeiterTable tr");
+        const tableData = Array.from(tableRows).slice(1).map(row => {
+            return {
+                vorname: row.cells[0].innerHTML,
+                nachname: row.cells[1].innerHTML,
+                abteilung: row.cells[2].innerHTML,
+                geburtsdatum: row.cells[3].innerHTML,
+                geschlecht: row.cells[4].innerHTML
+            };
+        });
+
+        localStorage.setItem("mitarbeiterData", JSON.stringify(tableData));
+    }
+
+    // Das Hinzufügen oder Bearbeiten einer Zeile dem Formular-Submit-Ereignis zuweisen
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        addOrEditRow();
+        form.reset();
+    });
+
+    // Beim Laden der Seite Daten aus dem Local Storage laden
+    window.addEventListener("load", function () {
+        const storedData = localStorage.getItem("mitarbeiterData");
+        if (storedData) {
+            const tableData = JSON.parse(storedData);
+            tableData.forEach(data => {
+                document.getElementById("vorname").value = data.vorname;
+                document.getElementById("nachname").value = data.nachname;
+                document.getElementById("abteilung").value = data.abteilung;
+                document.getElementById("geburtsdatum").value = data.geburtsdatum;
+                document.querySelector(`input[name="geschlecht"][value="${data.geschlecht}"]`).checked = true;
+                addOrEditRow();
+            });
+        }
+    });
+</script>
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
+</body>
+</html>
