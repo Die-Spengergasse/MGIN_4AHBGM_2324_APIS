@@ -2,7 +2,10 @@ package at.spengergasse.med_px.Anamnese;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,7 +54,12 @@ public class AnamneseController {
         anamnese.removeIf(dokument -> dokument.getSvnr() == svnr);
     }
 
-
+    @Configuration
+    public class ExampleMvcConfig implements WebMvcConfigurer {
+        public void addViewControllers(ViewControllerRegistry registry) {
+            registry.addViewController("/anamnese/anamneseformular").setViewName("/templates/anamnese/Anamneseformular.html");
+        }
+    }
 
 
 
