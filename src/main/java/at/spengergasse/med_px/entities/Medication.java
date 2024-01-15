@@ -11,4 +11,6 @@ public class Medication {
     private Long id;
 
     private String name;            // name of the medication
+
+    private int dose;
 }
