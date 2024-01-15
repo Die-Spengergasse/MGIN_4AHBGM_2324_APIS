@@ -12,12 +12,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * define routes for public pages
  */
 @Configuration
-public class PublicMvcConfig implements WebMvcConfigurer {
+public class besucherklasse implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/besuchertage").setViewName("/pub/welcome");
-        registry.addViewController("/pub/welcome").setViewName("/pub/welcome");
-        registry.addViewController("/pub/login").setViewName("/pub/login");
+        registry.addViewController("/besucher").setViewName("besuchertage/krankenhaus");
+
     }
 
 }
