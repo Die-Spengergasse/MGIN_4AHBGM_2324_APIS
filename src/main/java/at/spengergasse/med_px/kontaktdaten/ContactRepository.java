@@ -1,4 +1,7 @@
 package at.spengergasse.med_px.kontaktdaten;
 
-public interface ContactRepository {
+import at.spengergasse.med_px.entities.Contact;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContactRepository extends JpaRepository<Contact, Long> {
 }

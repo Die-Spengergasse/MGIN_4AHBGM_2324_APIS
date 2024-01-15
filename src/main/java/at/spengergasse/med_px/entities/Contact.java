@@ -13,21 +13,21 @@ public class Contact extends Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;        // the patient who owns the contact
+    @Column(name = "vorname")
+    private String vorname;
+
+    @Column(name = "nachname")
+    private String nachname;
 
     @ManyToOne
-    @JoinColumn(name = "city_zip")
-    private City city;              // the city of the contact
+    @JoinColumn(name = "adresse")
+    private City adresse;
 
-    @ManyToOne
-    @JoinColumn(name = "email")
-    private Patient email;
+    @Column(name = "email")
+    private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "phone")
-    private Patient phone;
+    @Column(name = "telefonnummer")
+    private String telefonnummer;
 
     public Long getId() {
         return id;
@@ -37,58 +37,70 @@ public class Contact extends Patient {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public String getVorname() {
+        return vorname;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
     }
 
-    public City getCity() {
-        return city;
+    public String getNachname() {
+        return nachname;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
     }
 
-    public Patient getEmail() {
+
+    public City getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(City adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Patient email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Patient getPhone() {
-        return phone;
+    public String getTelefonnummer() {
+        return telefonnummer;
     }
 
-    public void setPhone(Patient phone) {
-        this.phone = phone;
+    public void setTelefonnummer(String telefonnummer) {
+        this.telefonnummer = telefonnummer;
     }
 
-    public Contact(Long id, Patient patient, City city, Patient email, Patient phone) {
+
+    public Contact(Long id, String vorname, String nachname, City adresse, String email, String telefonnummer) {
         this.id = id;
-        this.patient = patient;
-        this.city = city;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.adresse = adresse;
         this.email = email;
-        this.phone = phone;
+        this.telefonnummer = telefonnummer;
     }
 
-    public Contact(){
+    public Contact() {
 
-    };
+    }
 
     @Override
     public String toString() {
         return "Contact{" +
                 "id=" + id +
-                ", patient=" + patient +
-                ", city=" + city +
-                ", email=" + email +
-                ", phone=" + phone +
+                ", vorname='" + vorname + '\'' +
+                ", nachname='" + nachname + '\'' +
+                ", Adresse=" + adresse +
+                ", email='" + email + '\'' +
+                ", telefonnummer='" + telefonnummer + '\'' +
                 '}';
     }
 }

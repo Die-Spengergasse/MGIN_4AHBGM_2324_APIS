@@ -2,9 +2,289 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Neue Kontaktdaten</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="dokument.js"></script>
 </head>
+
+<style>
+    /* Globale Stile für alle Elemente */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Stile für den gesamten Körper (Body) */
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #e9dece;
+    }
+
+    /* Stile für Überschrift 1 (H1) */
+    h1 {
+        font-size: 36px;
+        color: #333;
+        text-align: center; /* Zentrierung des Headers */
+        margin-bottom: 20px;
+    }
+
+    /* Stile für das Formular */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hinzugefügt: Schatten für das Formular */
+    }
+
+    /* Stile für die Beschriftung von Eingabefeldern (Label) */
+    label {
+        margin-top: 10px;
+    }
+
+    /* Stile für Dropdown, Eingabefelder und Textfelder */
+    select,
+    input,
+    textarea {
+        margin-bottom: 15px;
+    }
+
+    /* Stile für den Absende-Button */
+    input[type="submit"],
+    input[type="button"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    /* Stile für den Absende-Button beim Hovern (Mouseover) */
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+        background-color: #0056b3;
+    }
+
+    /* Stile für die Tabelle */
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    /* Stile für die Edit- und Delete-Buttons in der Tabelle */
+    .action-buttons button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .action-buttons button:hover {
+        background-color: #218838;
+    }
+
+    .action-buttons button.delete {
+        background-color: #dc3545;
+    }
+
+    .action-buttons button.delete:hover {
+        background-color: #c82333;
+    }
+</style>
+
 <body>
+
+    <div class="container">
+        <h1>Neue Kontaktdaten</h1>
+        <div class="form-group row">
+            <label for="vorname" class="col-sm-2 col-form-label">Vorname:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="vorname" placeholder="Vorname">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nachname" class="col-sm-2 col-form-label">Nachname:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nachname" placeholder="Nachname">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="strasse" class="col-sm-2 col-form-label">Strasse:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="strasse" placeholder="Strasse eingeben" required></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ort" class="col-sm-2 col-form-label">Ort:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ort" placeholder="Ort eingeben" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="plz" class="col-sm-2 col-form-label">PLZ:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="plz" placeholder="PLZ eingeben" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" placeholder="Email eingeben" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="telefon" class="col-sm-2 col-form-label">Telefonnummer:</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" id="telefon" placeholder="Telefonnummer eingeben" required>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="speichereKontaktdaten()">Kontaktdaten speichern</button>
+        </div>
+    </div>
+
+    <script>
+        // Funktion zum Darstellen der Kontakte in der Tabelle
+        function renderContacts() {
+            var kontakteArray = JSON.parse(localStorage.kontakte || '[]');
+            var tableBody = document.getElementById('kontaktTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            for (var i = 0; i < kontakteArray.length; i++) {
+                var kontakt = kontakteArray[i];
+                var row = tableBody.insertRow();
+                row.insertCell().innerText = kontakt.Vorname;
+                row.insertCell().innerText = kontakt.Nachname;
+                row.insertCell().innerText = kontakt.Strasse;
+                row.insertCell().innerText = kontakt.Ort;
+                row.insertCell().innerText = kontakt.PLZ;
+                row.insertCell().innerText = kontakt.Email;
+                row.insertCell().innerText = kontakt.Telefonnummer;
+
+                // Action buttons
+                var actionCell = row.insertCell();
+                var editBtn = createButton('Edit', createEditHandler(i));
+                var deleteBtn = createButton('Delete', createDeleteHandler(i), 'delete');
+                actionCell.appendChild(editBtn);
+                actionCell.appendChild(deleteBtn);
+            }
+        }
+
+        // Function to create a button with a specified text and click handler
+        function createButton(text, clickHandler, className = '') {
+            var button = document.createElement('button');
+            button.innerText = text;
+            button.onclick = clickHandler;
+            button.className = 'btn btn-sm ' + className;
+            return button;
+        }
+
+        // Function to create an edit button handler
+        function createEditHandler(index) {
+            return function () {
+                fillFormForEditing(index);
+            };
+        }
+
+        // Function to create a delete button handler
+        function createDeleteHandler(index) {
+            return function () {
+                deleteContact(index);
+            };
+        }
+
+        // Funktion zum Befüllen des Formulars für die Bearbeitung basierend auf der ausgewählten Zeile
+        function fillFormForEditing(index) {
+            var kontakteArray = JSON.parse(localStorage.kontakte || '[]');
+            var kontakt = kontakteArray[index];
+
+            // Fill form fields with the selected contact's data
+            document.getElementById('vorname').value = kontakt.Vorname;
+            document.getElementById('nachname').value = kontakt.Nachname;
+            document.getElementById('strasse').value = kontakt.Strasse;
+            document.getElementById('ort').value = kontakt.Ort;
+            document.getElementById('plz').value = kontakt.PLZ;
+            document.getElementById('email').value = kontakt.Email;
+            document.getElementById('telefon').value = kontakt.Telefonnummer;
+
+            // Store the index of the contact being edited
+            document.getElementById('kontaktForm').setAttribute('data-edit-index', index);
+        }
+
+        // Function to delete a contact
+        function deleteContact(index) {
+            var kontakteArray = JSON.parse(localStorage.kontakte || '[]');
+            kontakteArray.splice(index, 1); // Remove the contact at the specified index
+            localStorage.kontakte = JSON.stringify(kontakteArray);
+
+            // Update the table
+            renderContacts();
+        }
+
+        // Your existing save function
+        function speichereKontaktdaten() {
+            var editIndex = document.getElementById('kontaktForm').getAttribute('data-edit-index');
+
+            var vorname = document.getElementById('vorname').value;
+            var nachname = document.getElementById('nachname').value;
+            var strasse = document.getElementById('strasse').value;
+            var ort = document.getElementById('ort').value;
+            var plz = document.getElementById('plz').value;
+            var email = document.getElementById('email').value;
+            var telefon = document.getElementById('telefon').value;
+
+            var kontakt = {
+                Vorname: vorname,
+                Nachname: nachname,
+                Strasse: strasse,
+                Ort: ort,
+                PLZ: plz,
+                Email: email,
+                Telefonnummer: telefon
+            };
+
+            if (!localStorage.kontakte) {
+                localStorage.kontakte = JSON.stringify([]);
+            }
+
+            var kontakteArray = JSON.parse(localStorage.kontakte);
+
+            if (editIndex !== null) {
+                // Update existing contact if editing
+                kontakteArray[editIndex] = kontakt;
+                document.getElementById('kontaktForm').removeAttribute('data-edit-index');
+            } else {
+                // Add new contact if not editing
+                kontakteArray.push(kontakt);
+            }
+
+            localStorage.kontakte = JSON.stringify(kontakteArray);
+
+            // Clear form fields
+            document.getElementById('kontaktForm').reset();
+
+            // Rufen Sie renderContacts beim Laden der Seite auf, um vorhandene Kontakte anzuzeigen
+            renderContacts();
+        }
+
+        renderContacts();
+    </script>
 
 </body>
 </html>

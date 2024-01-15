@@ -52,6 +52,11 @@
                     <li><a href="/doctor/patients">Patients</a></li>
                 </ul>
 
+                <ul class="nav navbar-nav" sec:authorize="hasRole('Contact')">
+                    <li><a href="/contact">Contacts</a></li>
+                </ul>
+
+
                 <!--------------- LOGO ---------------->
                 <ul class="nav navbar-nav navbar-right">
                     <li><img src="/pub/Logo.jpg" alt="LOGO"></li>
