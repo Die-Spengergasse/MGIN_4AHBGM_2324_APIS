@@ -11,14 +11,6 @@ public class Diagnosis {
     @GeneratedValue
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @ManyToOne
     @JoinColumn(name = "case_id")
     private MedicalCase medicalCase;        // the medical case the diagnosis refers to
@@ -29,6 +21,14 @@ public class Diagnosis {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;                  // the doctor who made the diagnosis
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public MedicalCase getMedicalCase() {
         return medicalCase;

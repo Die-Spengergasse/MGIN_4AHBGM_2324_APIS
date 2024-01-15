@@ -16,6 +16,6 @@ public class DiagnosisMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/doctor/diagnosis").setViewName("/diagnosis/diagnosis");
-    }
+     }
 
 }

@@ -12,22 +12,20 @@
     <script src="diagnosis_other.js"></script>
 </head>
 <body onload="load_diagnosis()">
-<div th:replace="~{/masterpage/masterpage :: menu}"/>
 
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
 <div class="container">
     <h1>Diagnosis List</h1>
     <table class="table">
         <thead>
-        <td>ID</td>
-        <td>Name</td>
-        <td>DiagnoseCode</td>
-        <td>Vorerkrankungen</td>
-        <td>Diagnosedatum</td>
-        <td>Diagnosebeschreibung</td>
+        <th>ID</th>
+        <th>Medical Case</th>
+        <th>ICD10 Code</th>
+        <th>Doctor</th>
         </thead>
         <tbody id="diagnosis_list"></tbody>
     </table>
-    <a href="create_diagnosis.html">new diagnosis</a>
+    <a href="create_diagnosis.html">New Diagnosis</a>
 </div>
 </body>
 </html>

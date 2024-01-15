@@ -1,18 +1,21 @@
 async function load_diagnosis() {
-    const result = await fetch("/api/diagnoses");
-    const diagnoses = await result.json();
-    for (const d of diagnoses) {
-        const tbody = document.querySelector("#diagnosis_list");
-        const row = tbody.insertRow();
-        row.innerHTML = `
+    try {
+        const result = await fetch("/api/diagnoses");
+        const diagnoses = await result.json();
+
+        for (const d of diagnoses) {
+            const tbody = document.querySelector("#diagnosis_list");
+            const row = tbody.insertRow();
+            row.innerHTML = `
                 <td>${d.id}</td>
-                <td>${d.name}</td>
-                <td>${d.diagnoseCode}</td>
-                <td>${d.vorerkrankungen}</td>
-                <td>${d.diagnoseDatum}</td>
-                <td>${d.diagnoseBeschreibung}</td>
+                <td>${d.medicalCase}</td>
+                <td>${d.icd10}</td>
+                <td>${d.doctor}</td>
                 <td><button class="btn btn-primary" onclick="delete_diagnosis(${d.id})">Delete</button></td>
-        `;
+            `;
+        }
+    } catch (error) {
+        alert(`Error loading diagnoses: ${error.message}`);
     }
 }
 
@@ -34,11 +37,9 @@ async function delete_diagnosis(id) {
 
 async function save_diagnosis() {
     const diagnosis = {
-        name: document.getElementById("inputName").value,
-        diagnoseCode: document.getElementById("inputDiagnoseCode").value,
-        vorerkrankungen: document.getElementById("inputVorerkrankungen").value,
-        diagnoseDatum: document.getElementById("inputDiagnoseDatum").value,
-        diagnoseBeschreibung: document.getElementById("inputDiagnoseBeschreibung").value,
+        medicalCase: document.getElementById("inputMedicalCase").value,
+        icd10: document.getElementById("inputIcd10").value,
+        doctor: document.getElementById("inputDoctor").value,
     };
 
     try {

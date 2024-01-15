@@ -16,7 +16,7 @@ function delete_diagnosis(id) {
 
 function table_row(diagnosis) {
     let row = document.createElement("tr");
-    row.innerHTML = `<td>${diagnosis.id}</td><td>${diagnosis.name}</td><td>${diagnosis.diagnoseCode}</td><td>${diagnosis.vorerkrankungen}</td><td>${diagnosis.diagnoseDatum}</td><td>${diagnosis.diagnoseBeschreibung}</td>`
+    row.innerHTML = `<td>${diagnosis.id}</td><td>${diagnosis.medicalCase}</td><td>${diagnosis.icd10}</td><td>${diagnosis.doctor}</td>`
         + `<td><button class="btn btn-primary" onclick="delete_diagnosis(${diagnosis.id})">Delete</button></td>`;
     return row;
 }
@@ -37,11 +37,9 @@ function load_diagnosis() {
 
 function save_diagnosis() {
     const diagnosis = {
-        name: document.getElementById("inputName").value,
-        diagnoseCode: document.getElementById("inputDiagnoseCode").value,
-        vorerkrankungen: document.getElementById("inputVorerkrankungen").value,
-        diagnoseDatum: document.getElementById("inputDiagnoseDatum").value,
-        diagnoseBeschreibung: document.getElementById("inputDiagnoseBeschreibung").value,
+        medicalCase: document.getElementById("inputMedicalCase").value,
+        icd10: document.getElementById("inputIcd10").value,
+        doctor: document.getElementById("inputDoctor").value,
     };
 
     fetch("/api/diagnoses", {
