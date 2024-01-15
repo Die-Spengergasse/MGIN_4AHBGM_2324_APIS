@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Dokument</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="dokument.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>New Dokument</h1>
+    <div class="form-group row">
+        <label for="inputDokumentenname" class="col-sm-2 col-form-label">Dokumentenname</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDokumentenname" splaceholder="Dokumentenname">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputDokumentenart" class="col-sm-2 col-form-label">Dokumentenart</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDokumentenart" splaceholder="Dokumentenart">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputDokumentbeschreibung" class="col-sm-2 col-form-label">Dokumentbeschreibung</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDokumentbeschreibung" splaceholder="Dokumentbeschreibung">
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" onclick="save_dokument()">save_dokument</button>
+    </div>
+</div>
+</body>
+</html>
