@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medikamentenformular</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center; background-color: aquamarine; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Medikamenteninformationen</h1>
+    <form action="#" method="POST">
+        <div class="mb-3" style="padding-bottom: 25px;text-align: center;">
+            <label for="medikamentenname" class="form-label" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Medikamentenname:</label>
+            <input type="text" id="medikamentenname" name="medikamentenname" class="form-control" required>
+        </div>
+
+        <div class="mb-3" style="padding-bottom: 25px;text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <label for="dosierung" class="form-label">Dosierung:</label>
+            <input type="text" id="dosierung" name="dosierung" class="form-control">
+        </div>
+
+        <div class="mb-3" style="padding-bottom: 25px;text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <label for="anwendungsart" class="form-label">Anwendungsart:</label>
+            <select id="anwendungsart" name="anwendungsart" class="form-select">
+                <option value="Tablette">Tablette</option>
+                <option value="Kapsel">Kapsel</option>
+                <option value="Flüssig">Flüssig</option>
+                <option value="Salbe">Salbe</option>
+                <option value="Injektion">Injektion</option>
+            </select>
+        </div>
+
+        <div class="mb-3" style="padding-bottom: 50px;text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <label for="anwendungszeitpunkt" class="form-label">Anwendungszeitpunkt:</label>
+            <input type="text" id="anwendungszeitpunkt" name="anwendungszeitpunkt" class="form-control">
+        </div>
+
+        <div class="mb-3" style="padding-bottom: 100px;text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <label for="hinweise" class="form-label">Hinweise:</label>
+            <textarea id="hinweise" name="hinweise" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div style="text-align: center;  position: relative;  bottom: 70px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <label>
+                <div>
+                    Anmerkung: Bei Hinweise bitte angeben ob der Patient:In
+                </div>
+                <div>
+                    > Allergien hat
+                </div>
+                <div>
+                    > eine Schwangerschaft vorliegt
+                </div>
+                <div>
+                    > Diabetes hat
+                </div>
+                <div>
+                    > Nebenwirkungen aufweist
+                </div>
+                <div>
+                    > etc.
+                </div>
+
+            </label>
+
+        </div>
+
+        <button type="button" class="btn btn-primary" style="text-align: center; position: relative; left: 660px; bottom: 50px;"  onclick="speichernFormular()">Medikament hinzufügen</button>
+        <!-- <button type="submit" class="btn btn-primary" style="margin-top:px;text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color:aquamarine; position: relative; left: 660px; bottom: 50px;">Medikament hinzufügen</button> -->
+    </form>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+</div>
+
+<script src="MediFormular_Saiti.js"></script>
+
+<!-- Füge diese Tabelle hinzu -->
+<div class="container">
+    <h2 style="text-align: center;">Gespeicherte Medikamenteninformationen</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Medikamentenname</th>
+            <th scope="col">Dosierung</th>
+            <th scope="col">Anwendungsart</th>
+            <th scope="col">Anwendungszeitpunkt</th>
+            <th scope="col">Hinweise</th>
+        </tr>
+        </thead>
+        <tbody id="medikamentenTableBody">
+        <!-- Hier werden die Tabelleneinträge dynamisch generiert -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function updateTable() {
+        var tableBody = document.getElementById("medikamentenTableBody");
+
+        // Lösche den aktuellen Inhalt der Tabelle
+        tableBody.innerHTML = "";
+
+        // Iteriere durch das formularDaten-Array und füge Tabelleneinträge hinzu
+        formularDaten.forEach(function (medikament) {
+            var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+
+            cell1.textContent = medikament.Medikamentenname;
+            cell2.textContent = medikament.Dosierung;
+            cell3.textContent = medikament.Anwendungsart;
+            cell4.textContent = medikament.Anwendungszeitpunkt;
+            cell5.textContent = medikament.Hinweise;
+        });
+    }
+
+    // Funktion zum Speichern des Formulars
+    function speichernFormular() {
+        var medikamentenname = document.getElementById("medikamentenname").value;
+        var dosierung = document.getElementById("dosierung").value;
+        var anwendungsart = document.getElementById("anwendungsart").value;
+        var anwendungszeitpunkt = document.getElementById("anwendungszeitpunkt").value;
+        var hinweise = document.getElementById("hinweise").value;
+
+        var medikament = {
+            Medikamentenname: medikamentenname,
+            Dosierung: dosierung,
+            Anwendungsart: anwendungsart,
+            Anwendungszeitpunkt: anwendungszeitpunkt,
+            Hinweise: hinweise,
+        };
+
+        formularDaten.push(medikament);
+
+        console.log("Formulardaten:");
+        console.log(formularDaten);
+
+        // Nach dem Hinzufügen der Daten, aktualisiere die Tabelle
+        updateTable();
+    }
+</script>
+
+
+</body>
+</html>
