@@ -1,5 +1,4 @@
-package at.spengergasse.konsultation.entities;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+package konsultation;
 
 import java.time.LocalDate;
 

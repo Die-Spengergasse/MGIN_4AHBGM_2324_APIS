@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultation - Arztpraxis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker/dist/datepicker.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker/dist/datepicker.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function handleSpeichern() {
+            var patient_name = document.getElementById("patient_name").value;
+            var date = document.getElementById("date").value;
+            var symptoms = document.getElementById("symptoms").value;
+            var diagnosis = document.getElementById("diagnosis").value;
+            var prescription = document.getElementById("prescription").value;
+            var absence_dates = document.getElementById("absence_dates").value;
+
+            var table = document.getElementById("consultation_table").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+            var cell7 = newRow.insertCell(6);
+
+            cell1.innerHTML = patient_name;
+            cell2.innerHTML = date;
+            cell3.innerHTML = symptoms;
+            cell4.innerHTML = diagnosis;
+            cell5.innerHTML = prescription;
+            cell6.innerHTML = absence_dates;
+            cell7.innerHTML = '<button class="btn btn-secondary" onclick="editRow(this)">Edit</button>';
+        }
+
+        function editRow(button) {
+            var row = button.parentNode.parentNode;
+            var cells = row.getElementsByTagName("td");
+
+            document.getElementById("patient_name").value = cells[0].innerHTML;
+            document.getElementById("date").value = cells[1].innerHTML;
+            document.getElementById("symptoms").value = cells[2].innerHTML;
+            document.getElementById("diagnosis").value = cells[3].innerHTML;
+            document.getElementById("prescription").value = cells[4].innerHTML;
+            document.getElementById("absence_dates").value = cells[5].innerHTML;
+
+       
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</head>
+
+<body>
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+    <div class="container">
+        <h1>Konsultation</h1>
+        <form action="/submit_konsultation" method="post"> 
+            <div class="mb-3">
+                <label for="patient_name">Name des Patienten:</label>
+                <input type="text" class="form-control" id="patient_name" name="patient_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="date">Datum:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="mb-3">
+                <label for="symptoms">Symptome:</label>
+                <select class="form-control" id="symptoms" name="symptoms" required>
+                    <option value="">Bitte auswählen</option>
+                    <option value="Fieber">Fieber</option>
+                    <option value="Husten">Husten</option>
+                    <option value="Kopfschmerzen">Kopfschmerzen</option>
+                    <option value="Bauchschmerzen">Bauchschmerzen</option>
+                    <option value="Andere">Andere</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="diagnosis">Diagnose:</label>
+                <textarea class="form-control" id="diagnosis" name="diagnosis" rows="4" required></textarea>
+            </div>
+            <div class="mb-3"> <!-- container -->
+                <label for="prescription">Rezept:</label>
+                <select class="form-control" id="prescription" name="prescription">
+                    <option value="">Bitte auswählen</option>
+                    <option value="Paracetamol">Paracetamol</option>
+                    <option value="Antibiotika">Antibiotika</option>
+                    <option value="Vitamine">Vitamine</option>
+                    <option value="Andere">Andere</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="absence_dates">Abwesenheit in Schule/Arbeit:</label>
+                <input type="text" class="form-control" id="absence_dates" name="absence_dates" placeholder="Von - Bis">
+            </div>
+            <input type="button" class="btn btn-primary" value="Senden" onclick="handleSpeichern1()"> 
+        </form>
+
+        <table class="table" id="consultation_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Datum</th>
+                    <th>Symptome</th>
+                    <th>Diagnose</th>
+                    <th>Rezept</th>
+                    <th>Abwesenheit</th>
+                    <th>Bearbeiten</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
+</body>
+</html>

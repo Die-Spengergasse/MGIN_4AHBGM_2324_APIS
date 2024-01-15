@@ -1,4 +1,4 @@
-package Interface;
+package konsultation;
 
 public interface KonsultationRepository {
 }

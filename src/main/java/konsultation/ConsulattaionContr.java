@@ -1,7 +1,5 @@
-package at.spengergasse.konsultation.controller;
+package konsultation;
 
-import at.spengergasse.konsultation.entities.Konsultation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
