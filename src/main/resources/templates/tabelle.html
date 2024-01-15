@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #FF6B6B, #63E2FF);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #FF6B6B;
+        }
+
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .selected {
+            background-color: #c5e1a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Base Data</h1>
+        <form id="myForm" method="post">
+            <label for="form-vname">First Name:</label>
+            <input type="text" id="form-vname" name="vname">
+            <label for="form-nname">Last Name:</label>
+            <input type="text" id="form-nname" name="nname">
+            <label for="form-geb">Birthday:</label>
+            <input type="date" id="form-geb" name="geb">
+            <label for="form-svnr">SSN:</label>
+            <input type="number" id="form-svnr" name="svnr">
+            <input type="button" value="Submit" id="submit-button">
+            <input type="button" value="Delete" id="delete-button">
+        </form>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Birthday</th>
+                    <th>SSN</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const formDataArray = []; //   Ist ein Array --->  Es speichert Objekte wie formDate Werden die gespeicherten Formulardaten gesammelt, um sie in der Tabelle zu verwalten
+        const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+    
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const formData = { // ist ein javaScript objekt wird erstllet beim Klicken aud submit und es enthält Formularfelder (daten werden im Objekt gespeichert) ---> 
+                vname: document.getElementById('form-vname').value,
+                nname: document.getElementById('form-nname').value,
+                geb: document.getElementById('form-geb').value,
+                svnr: document.getElementById('form-svnr').value,
+            };
+    
+            if (selectedRow) { // wird geschaut ob ne zeile ausgeählt wurde
+                updateFormData(selectedRow, formData); // Funktion aktualisiert die Daten in der ausgewählten Zeile mit den Daten, die im formData-Objekt gespeichert sind.-->  
+            } else {
+                formDataArray.push(formData);    // keine Zeile ausgewählt 
+                createTableRow(formData);
+            }
+
+            console.log(formDataArray);
+    
+            clearFormFields();
+        });
+    
+
+      //Diese Variable wird verwendet, um die ausgewählte Zeile in der Tabelle zu speichern.
+        
+        let selectedRow = null;
+        dataTable.addEventListener('click', function(event) { // reagiert auf klicken
+            if (event.target.parentNode.tagName === 'TR') {  // geprüft ob benutzer eine Zeile angeklickt hat
+                if (selectedRow) {
+                    selectedRow.classList.remove('selected');
+                }
+                selectedRow = event.target.parentNode;
+                selectedRow.classList.add('selected');
+    
+                fillFormWithRowData(selectedRow);
+            }
+        });
+    
+        document.getElementById('delete-button').addEventListener('click', function () {
+            if (selectedRow) { //Zeile ausgewählt?
+                deleteRow(selectedRow);
+            }
+        });
+    
+        function createTableRow(formData) { //wird verwendet, um eine neue Zeile in der Tabelle zu erstellen und mit den bereitgestellten Daten zu füllen. 
+            const newRow = dataTable.insertRow(-1);
+    
+            const cellFirstName = newRow.insertCell(0);
+            const cellLastName = newRow.insertCell(1);
+            const cellBirthday = newRow.insertCell(2);
+            const cellSSN = newRow.insertCell(3);
+    
+            cellFirstName.textContent = formData.vname;
+            cellLastName.textContent = formData.nname;
+            cellBirthday.textContent = formData.geb;
+            cellSSN.textContent = formData.svnr;
+        }
+    
+        function fillFormWithRowData(row) { //wird verwendet, um die Formularfelder mit den Daten einer ausgewählten Zeile in der Tabelle zu füllen
+            document.getElementById('form-vname').value = row.cells[0].textContent;
+            document.getElementById('form-nname').value = row.cells[1].textContent;
+            document.getElementById('form-geb').value = row.cells[2].textContent;
+            document.getElementById('form-svnr').value = row.cells[3].textContent;
+        }
+    
+        function clearFormFields() { //hier werden die geleert also die Formularfelder
+            document.getElementById('form-vname').value = '';
+            document.getElementById('form-nname').value = '';
+            document.getElementById('form-geb').value = '';
+            document.getElementById('form-svnr').value = '';
+            if (selectedRow) {
+                selectedRow.classList.remove('selected');
+                selectedRow = null;
+            }
+        }
+    
+        function updateFormData(row, formData) { //hier werden die daten in einer Zeile aktualisiert
+            row.cells[0].textContent = formData.vname;
+            row.cells[1].textContent = formData.nname; //Die zweite Zelle (cells[1]) wird mit dem Nachnamen (formData.nname) aktualisiert.
+            row.cells[2].textContent = formData.geb;
+            row.cells[3].textContent = formData.svnr;
+    
+            const index = formDataArray.findIndex(data => data.vname === formData.vname && data.nname === formData.nname); // durchsucht arrays nach elementen das die bedingung erfüllt
+            if (index !== -1) { 
+                formDataArray[index] = formData;
+            }
+        }
+    
+        function deleteRow(row) {
+            const rowIndex = row.rowIndex - 1; // Adjust for header row
+            dataTable.deleteRow(rowIndex);
+            clearFormFields();
+        }
+    </script>
+</body>
+</html>
