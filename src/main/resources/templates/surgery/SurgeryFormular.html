@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="chirurgdesign.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-decoration: underline;">Chirurgischer Eingriff</h1>
+    <form>
+        <label for="patient">Patient</label>
+        <select id="patient" name="patients">
+            <option disabled selected hidden></option>
+            <option value="Herr Jaros">Herr Jaros</option>
+            <option value="Herr Akrout">Herr Akrout</option>
+            <option value="Herr Müller">Herr Müller</option>
+            <option value="Frau Knabe">Frau Knabe</option>
+            <option value="Frau Hofer">Frau Hofer</option>
+        </select>
+
+        <label for="dr">Arzt</label>
+        <select id="dr" name="drs">
+            <option disabled selected hidden></option>
+            <option value="Dr. Pasalic">Dr. Pasalic</option>
+            <option value="Dr. Sarmiento">Dr. Sarmiento</option>
+            <option value="Dr. Mehmedovik">Dr. Mehmedovik</option>
+        </select>
+
+        <label for="surgery">Chirurgischer Eingriff</label>
+        <select id="surgery" name="surgerys">
+            <option disabled selected hidden></option>
+            <option value="Koronararterien-Bypass-Operation (CABG)">Koronararterien-Bypass-Operation (CABG)</option>
+            <option value="Appendektomie">Appendektomie</option>
+            <option value="Cholezystektomie">Cholezystektomie</option>
+            <option value="Osteosynthese">Osteosynthese</option>
+            <option value="Hernienreparatur">Hernienreparatur</option>
+        </select>
+
+        <label for="case">Fall</label>
+        <select id="case" name="cases">
+            <option disabled selected hidden></option>
+            <option value="Herzinfarkt">Herzinfarkt</option>
+            <option value="Blinddarmentzündung">Blinddarmentzündung</option>
+            <option value="Gallensteine">Gallensteine</option>
+            <option value="Knochenbruch ">Knochenbruch</option>
+            <option value="Hernie">Hernie</option>
+        </select>
+
+        <label for="date">Datum</label>
+        <input type="datetime-local" id="date" name="dates">
+
+        <button id="save">Speichern</button>
+        <button type="reset">Neu</button>
+    </form>
+    <a href="http://localhost:8080/Surgeryhtml.html">
+        <button>Tabelle</button>
+    </a>
+</div>
+<script src="Surgery2js.js"></script>
+</body>
+</html>
