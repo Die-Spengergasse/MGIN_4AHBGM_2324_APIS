@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Bildbefund Verwaltung</title>
+    <style>
+        /* Stildefinitionen für das Layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: large;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+        h2 {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px;
+        }
+    
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+
+        .formElement {
+            font-size: larger;
+        }
+
+        .formDivider {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 3px;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{/masterpage/masterpage :: menu}"/>
+    <h1>Bildbefund Verwaltung</h1>
+    
+    <!-- Form for entering medical study data -->
+    <h2>Bildbefund erfassen</h2>
+    <form id="befundForm">
+        <div class="formDivider">
+            <div class="col-md-12">
+                <label for="patientennamen">Patientenname:</label>
+                <input type="text" id="patientennamen" name="patientennamen">
+            </div>
+        </div>
+
+        <div class="formDivider">
+            <div class="col-md-12">
+                <label for "geburtstag" class="form-label">Geburtstag:</label>
+                <input type="date" class="form-control" id="geburtstag" name="geburtstag" required>
+            </div>
+        </div>
+
+        <div class="formDivider">
+            <div class="col-md-12">
+                <label class="form-label">Geschlecht:</label><br>
+                <input type="radio" name="geschlecht" id="mann" value="mann" required>
+                <label for="mann">Mann</label>
+                <input type="radio" name="geschlecht" id="frau" value="frau" required>
+                <label for="frau">Frau</label>
+            </div>
+        </div>
+
+        <div class="formDivider">
+            <label class="formElement" for="imagefield"> Bilddatei auswählen:</label>
+            <input type="file" accept="image/*" id="imagefield">
+        </div>
+        <div class="formDivider">
+            <label for="befundText" class="formElement">Befund Beschreibung:</label>
+            <textarea id="befundText" name="befundText" rows="4" cols="50"></textarea>
+        </div>
+        
+        <input type="button" id="submitBefund" value="Befund absenden" onclick="save()">
+        
+    </form>
+    
+    <!-- Table to display the entered data -->
+    <h2>Medical Studies</h2>
+    <table id="studyTable" class="table">
+        <thead>
+            <tr>
+                <th>Patientenname</th>
+                <th>Geburtstag</th>
+                <th>Geschlecht</th>
+                <th>Befund Beschreibung</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studyTableBody">
+            <!-- Table rows will be dynamically added here -->
+        </tbody>
+    </table>
+    
+    <script>
+        let studies = JSON.parse(localStorage.getItem('studies')) || [];
+        const form = document.querySelector("#befundForm");
+        const table = document.querySelector("#studyTableBody");
+        let editingIndex = -1;
+
+        window.onload = function() {
+            studies.forEach((study, index) => {
+                const newRow = table.insertRow(index);
+                populateRow(newRow, study);
+            });
+        };
+
+        function save() {
+            const patientName = document.querySelector("#patientennamen").value;
+            const geburtstag = document.querySelector("#geburtstag").value;
+            const geschlecht = document.querySelector("input[name='geschlecht']:checked").value;
+            const befundText = document.querySelector("#befundText").value;
+            const study = { patientName, geburtstag, geschlecht, befundText };
+
+            if (editingIndex === -1) {
+                studies.push(study);
+                const newRow = table.insertRow();
+                populateRow(newRow, study);
+            } else {
+                studies[editingIndex] = study;
+                const row = table.rows[editingIndex];
+                updateRow(row, study);
+                editingIndex = -1;
+            }
+
+            localStorage.setItem('studies', JSON.stringify(studies));
+            form.reset();
+        }
+
+        function populateRow(row, study) {
+            const cellName = row.insertCell(0);
+            const cellGeburtstag = row.insertCell(1);
+            const cellGeschlecht = row.insertCell(2);
+            const cellBefundText = row.insertCell(3);
+            const cellActions = row.insertCell(4);
+
+            cellName.textContent = study.patientName;
+            cellGeburtstag.textContent = study.geburtstag;
+            cellGeschlecht.textContent = study.geschlecht;
+            cellBefundText.textContent = study.befundText;
+            cellActions.innerHTML = '<button class="editBtn" onclick="editRow(this)">Edit</button><button class="deleteBtn" onclick="deleteRow(this)">Delete</button>';
+        }
+
+        function updateRow(row, study) {
+            const cells = row.cells;
+            cells[0].textContent = study.patientName;
+            cells[1].textContent = study.geburtstag;
+            cells[2].textContent = study.geschlecht;
+            cells[3].textContent = study.befundText;
+        }
+
+        function editRow(button) {
+            const row = button.parentNode.parentNode;
+            const cells = row.cells;
+
+            document.querySelector("#patientennamen").value = cells[0].textContent;
+            document.querySelector("#geburtstag").value = cells[1].textContent;
+            const gender = cells[2].textContent;
+            document.querySelector(`input[name='geschlecht'][value='${gender}']`).checked = true;
+            document.querySelector("#befundText").value = cells[3].textContent;
+            editingIndex = row.rowIndex - 1;
+        }
+
+        /*function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            const index = row.rowIndex - 1;
+
+            studies.splice(index, 1);
+            localStorage.setItem('studies', JSON.stringify(studies));
+            table.deleteRow(index);
+            form.reset();
+            editingIndex = -1;
+        }*/
+    </script>
+    <section th:replace="~{/masterpage/masterpage :: footer}"/>
+</body>
+</html>
