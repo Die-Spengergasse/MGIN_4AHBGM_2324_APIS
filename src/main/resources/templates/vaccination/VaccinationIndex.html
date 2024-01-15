@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaccination</title>
+    <script src="script-Erweitert.js"></script>
+    <title>Patientenverwaltungssystem - Impfungen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* benutzerdefinierte lila Buttons */
+        .btn-lila {
+            background-color: #800080; /* Lila Farbcode */
+            color: #ffffff; /* weiße Schriftfarbe */
+        }
+
+        body {
+            background-color: #d5f7ff; /* helle Blaugraufarbe als Hintergrund*/
+        }
+
+        .form-control, .btn-lila {
+            border-radius: 10px; /* abgerundete Ecken der Felder */
+        }
+
+        .mt-4 {
+            margin-top: 20px; /* erhöhter Abstand */
+        }
+
+        h1, h2 {
+            font-size: 28px; /* größere Schriftgröße */
+            font-weight: bold; /* fetter Text */
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Patientenverwaltungssystem - Impfungen</h1>
+
+    <!-- Formular für die Impfung eines Patienten -->
+    <div class="mt-4">
+        <h2>Impfung eines Patienten</h2>
+        <form>
+            <div class="form-group">
+                <label for="patient">Patient:</label>
+                <input type="text" class="form-control" id="patient" placeholder="Patientenname">
+            </div>
+            <div class="form-group">
+                <label for="impfstoff">Impfstoff:</label>
+                <select class="form-control" id="impfstoff">
+                    <option>COVID-19-Impfstoff</option>
+                    <option>Grippeimpfung</option>
+                    <option>Tetanus-Impfstoff</option>
+                    <option>Masern-Impfstoff</option>
+                    <option>Hepatitis A</option>
+                    <option>Hepatitis B</option>
+                    <option>Gürtelrose (Herpes Zoster) Impfung</option>
+                    <option>Mumps-Impfung</option>
+                    <option>MMR-Impfung</option>
+                    <option>Röteln-Impfung</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dosis">Dosis (in mg):</label>
+                <input type="number" class="form-control" id="dosis" placeholder="Dosis in Milligramm">
+            </div>
+            <div class="form-group">
+                <label for="arzt">Arzt:</label>
+                <select class="form-control" id="arzt">
+                    <option>Dr. Behrens</option>
+                    <option>Dr. Pilwein</option>
+                    <option>Dr. Huber</option>
+                    <option>Dr. Neubauer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bemerkungen">Bemerkungen/Wuensche/Beschwerden? Lassen Sie es uns wissen:</label>
+                <textarea class="form-control" id="bemerkungen" placeholder="Anmerkungen hier hineinschreiben"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="impfdatum">Impfdatum:</label>
+                <input type="date" class="form-control" id="impfdatum">
+            </div>
+            <button type="button" class="btn btn-lila" id="impfungButton">Impfung durchfuehren</button>
+        </form>
+    </div>
+
+    <!-- Die Tabelle, um Impfungsdaten anzuzeigen -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Impfstoff</th>
+            <th>Dosis (mg)</th>
+            <th>Arzt</th>
+            <th>Bemerkungen</th>
+            <th>Impfdatum</th>
+        </tr>
+        </thead>
+        <tbody id="impfungsTabelle">
+        <!-- Hier werden die Tabellenzeilen dynamisch eingefügt -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script-Erweitert.js"></script>
+</body>
+</html>
