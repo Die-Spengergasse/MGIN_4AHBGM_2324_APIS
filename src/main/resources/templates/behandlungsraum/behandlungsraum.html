@@ -2,9 +2,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+    <title>Behandlungsraum reservieren</title>
+    <style>
+        body {
+            background-color: beige;
+            padding-top: 50px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #25623e;
+        }
+
+        .container {
+            background-color: #beb7bbec;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #327053;
+        }
+    </style>
 </head>
 <body>
-
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
+<div class="container">
+    <h1>Behandlungsraum reservieren</h1>
+    <div class="container">
+        <h2>Anmelden</h2>
+        <form action="/action_page.php">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="container">
+        <form id="reservation-form">
+            <h2>Raumreservierung</h2>
+            <div class="form-group">
+                <label for="hospital">Krankenhaus:</label>
+                <select class="form-control" id="hospital" name="hospital">
+                    <option >Klinik Ottakring</option>
+                    <option >Klinik Floridsdorf</option>
+                    <option >AKH</option>
+                    <option >Klinik Donaustadt</option>
+                    <option >Klinik Meidling</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="room">Raumbezeichnung:</label>
+                <select class="form-control" id="room" name="room">
+                    <option >A.01</option>
+                    <option >A.02</option>
+                    <option >A.03</option>
+                    <option >A.04</option>
+                    <option >A.05</option>
+                    <option >A.06</option>
+                    <option >A.07</option>
+                    <option >A.08</option>
+                    <option >A.09</option>
+                    <option >A.10</option>
+                    <option >B.01</option>
+                    <option >B.02</option>
+                    <option >B.03</option>
+                    <option >B.04</option>
+                    <option >B.05</option>
+                    <option >B.06</option>
+                    <option >B.07</option>
+                    <option >B.08</option>
+                    <option >B.09</option>
+                    <option >B.10</option>
+                    <option >C.01</option>
+                    <option >C.02</option>
+                    <option >C.03</option>
+                    <option >C.04</option>
+                    <option >C.05</option>
+                    <option >C.06</option>
+                    <option >C.07</option>
+                    <option >C.08</option>
+                    <option >C.09</option>
+                    <option >C.10</option>
+                    <option >D.01</option>
+                    <option >D.02</option>
+                    <option >D.03</option>
+                    <option >D.04</option>
+                    <option >D.05</option>
+                    <option >D.06</option>
+                    <option >D.07</option>
+                    <option >D.08</option>
+                    <option >D.09</option>
+                    <option >D.10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Datum:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Uhrzeit:</label>
+                <input type="time" class="form-control" id="time" name="time" required>
+            </div>
+            <button type="submit" id="reserve-button"class="btn btn-primary">Reservieren</button>
+        </form>
+    </div>
+</div>
+<script src="Behandlungsraum.js"></script>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Krankenhaus</th>
+        <th>Raumbezeichnung</th>
+        <th>Datum</th>
+        <th>Uhrzeit</th>
+    </tr>
+    </thead>
+    <tbody id="table">
+    </tbody>
+</table>
+<button type="button" id="saveButton">Save</button>
 </body>
 </html>

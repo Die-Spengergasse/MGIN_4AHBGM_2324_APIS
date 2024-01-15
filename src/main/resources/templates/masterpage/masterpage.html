@@ -51,7 +51,10 @@
                 <ul class="nav navbar-nav" sec:authorize="hasRole('DOCTOR')">
                     <li><a href="/doctor/patients">Patients</a></li>
                 </ul>
-
+                <!--------------- menu items for Behandlungsraum ---------------->
+                <ul class="nav navbar-nav" sec:authorize="hasRole('Behandlungsraum')">
+                    <li><a href="/behandlunsgraum.html">Reservations</a></li>
+                </ul>
                 <!--------------- LOGO ---------------->
                 <ul class="nav navbar-nav navbar-right">
                     <li><img src="/pub/Logo.jpg" alt="LOGO"></li>
