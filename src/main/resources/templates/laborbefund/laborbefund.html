@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratory Report</title>
+
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../../static/laborbefund/laborbefund.js"></script>
+    <script src="../../static/laborbefund/laborbefund_other.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body onload="load_laborbefund()">
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+<header>
+    <h1>Laborbefund</h1>
+</header>
+<div class="col-md-12">
+    <div class="form-container">
+        <h2>Patientendaten</h2>
+<div class="container">
+    <table class="table">
+        <thead>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Geburtsdatum</th>
+        <th>SVN</th>
+        <th>Leukozyten</th>
+        <th>Thrombozyten</th>
+        <th>Erythrozyten</th>
+        <th>Hämoglobin</th>
+        <th>Hämatokrit</th>
+        <th>MCH</th>
+        <th>MCV</th>
+        <th>MCHC</th>
+        </thead>
+        <tbody id="laboratory_list"></tbody>
+
+    </table>
+    <a href="create_laborbefund.html">New Laboratory Report</a>
+
+</div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Fügt die Tabellenzellenränder zusammen */
+}
+
+.form-table th,
+.form-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    /* Linie zwischen den Zellen hinzufügen */
+}
+
+.form-table input {
+    width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+#dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#dataTable th,
+#dataTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#dataTable th {
+    background-color: #f2f2f2;
+}
+
+#dataTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#dataTable tr:hover {
+    background-color: #ddd;
+}
+
+#dataTable button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#dataTable button:hover {
+    background-color: #45a049;
+}

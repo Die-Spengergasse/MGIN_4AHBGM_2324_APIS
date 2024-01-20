@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Laboratory Report</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../../static/laborbefund/laborbefund.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>New Laboratory Report</h1>
+    <h2>Patientdata</h2>
+    <div class="form-group">
+        <label for="vorname">Vorname:</label>
+        <input type="text" class="form-control" id="vorname" name="vorname" required>
+    </div>
+    <div class="form-group">
+        <label for="nachname">Nachname:</label>
+        <input type="text" class="form-control" id="nachname" name="nachname" required>
+    </div>
+    <div class="form-group">
+        <label for="geburtsdatum">Geburtsdatum:</label>
+        <input type="date" class="form-control" id="geburtsdatum" name="geburtsdatum" required>
+    </div>
+    <div class="form-group">
+        <label for="SVN">SVN:</label>
+        <input type="number" class="form-control" id="svn" name="svn" required>
+    </div>
+    <h2>Laboratory Report</h2>
+    <div class="form-group">
+        <label for="leukozyten">Leukozyten:</label>
+        <input type="number" class="form-control" id="leukozyten" name="leukozyten" required>
+    </div>
+    <div class="form-group">
+        <label for="thrombozyten">Thrombozyten:</label>
+        <input type="number" class="form-control" id="thrombozyten" name="thrombozyten" required>
+    </div>
+    <div class="form-group">
+        <label for="erythrozyten">Erythrozyten:</label>
+        <input type="number" class="form-control" id="erythrozyten" name="erythrozyten" required>
+    </div>
+    <div class="form-group">
+        <label for="haemoglobin">Hämoglobin:</label>
+        <input type="number" class="form-control" id="haemoglobin" name="haemoglobin" required>
+    </div>
+    <div class="form-group">
+        <label for="haemotokrit">Hämotokrit:</label>
+        <input type="number" class="form-control" id="haemotokrit" name="haemotokrit" required>
+    </div>
+    <div class="form-group">
+        <label for="mch">MCH:</label>
+        <input type="number" class="form-control" id="mch" name="mch" required>
+    </div>
+    <div class="form-group">
+        <label for="mcv">MCV:</label>
+        <input type="number" class="form-control" id="mcv" name="mcv" required>
+    </div>
+    <div class="form-group">
+        <label for="mchc">MCHC:</label>
+        <input type="number" class="form-control" id="mchc" name="mchc" required>
+    </div>
+    <button id="submitbtn" class="btn btn-primary" onclick="saveData()">Befund speichern</button>
+
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #dee2e6;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin-right: 5px;
+        }
+    </style>
+</div>
+</body>
+</html>
