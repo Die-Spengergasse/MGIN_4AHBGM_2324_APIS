@@ -17,4 +17,25 @@ public class DoctorsLetter extends Document{
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;              // the doctor who wrote the letter
+
+    public MedicalCase getMedicalCase() {
+        return medicalCase;
+    }
+
+    public void setMedicalCase(MedicalCase medicalCase) {
+        this.medicalCase = medicalCase;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public DoctorsLetter(MedicalCase medicalCase, Doctor doctor) {
+        this.medicalCase = medicalCase;
+        this.doctor = doctor;
+    }
 }

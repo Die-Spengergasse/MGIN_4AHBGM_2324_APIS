@@ -1,0 +1,18 @@
+2024-01-22 15:58:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
+2024-01-22 16:08:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
+2024-01-22 16:16:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
+2024-01-22 16:25:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
+2024-01-22 16:26:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
+2024-01-22 16:27:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table measured_value (id bigint not null, name varchar(255), unit varchar(255), [*]value float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table measured_value (id bigint not null, name varchar(255), unit varchar(255), value float(53) not null, primary key (id)) [42001-214]
