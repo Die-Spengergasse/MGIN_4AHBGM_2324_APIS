@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class HealthRecordMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/doctor/healthrecord").setViewName("/healthrecord/healthrecord");
+        registry.addViewController("/doctor/healthrecord").setViewName("/healthRecord/grunddaten");
     }
 }
