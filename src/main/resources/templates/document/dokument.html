@@ -8,6 +8,7 @@
     <script src="dokument_other.js"></script>
 </head>
 <body  onload="load_dokumente()">
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
     <div class="container">
         <h1>Dokument Liste</h1>
         <table class="table">
@@ -22,4 +23,5 @@
     </div>
 <h1>First Page</h1>
 </body>
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
 </html>

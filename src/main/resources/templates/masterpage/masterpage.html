@@ -50,11 +50,8 @@
                 <!--------------- menu items for doctors ---------------->
                 <ul class="nav navbar-nav" sec:authorize="hasRole('DOCTOR')">
                     <li><a href="/doctor/patients">Patients</a></li>
+                    <li><a href="/doctor/document">Document</a></li>
                 </ul>
-                <ul class="nav navbar-nav" sec:authorize="hasRole('DOCUMENT')">
-                    <li><a href="/document">Document</a></li>
-                </ul>
-
                 <!--------------- LOGO ---------------->
                 <ul class="nav navbar-nav navbar-right">
                     <li><img src="/pub/Logo.jpg" alt="LOGO"></li>

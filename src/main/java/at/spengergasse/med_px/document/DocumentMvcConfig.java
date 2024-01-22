@@ -7,6 +7,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class DocumentMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/doctor/document").setViewName("/document/document");
+        registry.addViewController("/doctor/document").setViewName("/document/dokument");
     }
 }
