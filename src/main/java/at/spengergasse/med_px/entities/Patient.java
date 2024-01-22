@@ -10,10 +10,10 @@ public class Patient {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany //(mappedBy = "patient")
     private List<Contact> contacts;
 
-    @OneToOne(mappedBy = "patient")
+    @OneToOne //(mappedBy = "patient")
     private HealthRecord healthRecord;
 
     @ManyToOne

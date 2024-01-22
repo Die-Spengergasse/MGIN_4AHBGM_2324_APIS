@@ -8,7 +8,7 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "contact")
-public class Contact extends Patient {
+public class Contact{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

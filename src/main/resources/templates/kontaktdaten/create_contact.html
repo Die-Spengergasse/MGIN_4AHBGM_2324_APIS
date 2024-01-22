@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <th:block th:insert="~{masterpage/masterpage :: assets}"/>
     <meta charset="UTF-8">
     <title>Neue Kontaktdaten</title>
     <!-- CSS only -->
@@ -109,8 +110,9 @@
 </style>
 
 <body>
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
 
-    <div class="container">
+<div class="container">
         <h1>Neue Kontaktdaten</h1>
         <div class="form-group row">
             <label for="vorname" class="col-sm-2 col-form-label">Vorname:</label>
@@ -286,5 +288,6 @@
         renderContacts();
     </script>
 
+<section th:replace="~{/masterpage/masterpage :: footer}"/>
 </body>
 </html>

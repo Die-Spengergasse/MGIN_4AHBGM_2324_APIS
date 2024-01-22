@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class City extends Contact{
+public class City {
     @Id
     @Column(name = "plz")
     private int plz;
