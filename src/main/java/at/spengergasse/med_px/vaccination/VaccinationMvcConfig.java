@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class VaccinationMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("/vaccination/vacc");
+        registry.addViewController("/doctor/vaccination").setViewName("/vaccination/VaccinationIndex");
     }
 }

@@ -11,4 +11,7 @@ public class Vaccine extends Medication{
     private Long id;
 
     private String typeOfVac;
+
+    //vaccination - Verabreichung
+    //vaccine - Art der Impfung
 }

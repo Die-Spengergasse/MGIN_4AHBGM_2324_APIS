@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vaccination</title>
+    <th:block th:include="masterpage/masterpage.html :: assets"/>
     <script src="script-Erweitert.js"></script>
     <title>Patientenverwaltungssystem - Impfungen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -33,6 +34,7 @@
     </style>
 </head>
 <body>
+<div th:replace="/masterpage/masterpage.html :: menu"/>
 <div class="container">
     <h1 class="mt-5">Patientenverwaltungssystem - Impfungen</h1>
 
@@ -107,4 +109,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script-Erweitert.js"></script>
 </body>
+<section th:replace="/masterpage/masterpage.html :: footer"/>
 </html>

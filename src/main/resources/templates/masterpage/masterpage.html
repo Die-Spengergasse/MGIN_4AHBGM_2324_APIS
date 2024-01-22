@@ -52,6 +52,16 @@
                     <li><a href="/doctor/patients">Patients</a></li>
                 </ul>
 
+                <!------- Inserted for DOCTOR and ADMIN ------->
+                <ul class="nav navbar-nav" sec:authorize="hasRole('DOCTOR')">
+                    <li><a href="/doctor/vaccination">Vaccination</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav" sec:authorize="hasRole('ADMIN')">
+                    <li><a href="/admin/users">Vaccination</a></li>
+                </ul>
+                <!-- above has been done in lesson -->
+
                 <!--------------- LOGO ---------------->
                 <ul class="nav navbar-nav navbar-right">
                     <li><img src="/pub/Logo.jpg" alt="LOGO"></li>
