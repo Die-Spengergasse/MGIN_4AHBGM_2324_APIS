@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class PrescriptionMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/doctor/prescription").setViewName("/prescription/prescription");
         registry.addViewController("/admin/prescription").setViewName("/prescription/prescription");
 
     }

@@ -19,13 +19,11 @@ public class PrescriptionControllers {
     private ArrayList<Prescription> prescription = new ArrayList<>();
 
 
-    // GET http://localhost:8080/recipes/all
     @GetMapping("all")
     public Iterable<Prescription> getAllPrescription(){
         return prescriptionRepository.findAll();
     }
 
-    // GET http://localhost:8080/recipes/{id}
     /*@GetMapping("/{id}")
     public Prescription getRecipeById(@PathVariable String id) {
         System.out.println(id);
