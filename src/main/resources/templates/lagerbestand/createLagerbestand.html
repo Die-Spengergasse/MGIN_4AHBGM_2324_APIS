@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 5 Example</title>
+  <title>Lagerbestand</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,18 +13,13 @@
 <div th:replace="~{/masterpage/masterpage :: menu}"/>
 <div class = "container-fluid p-5 bg-primary text-white text-center">
   <h1>
-Lagerbestand
+    Lagerbestand
   </h1>
 </div>
-
 <br>
-
 <div class = 'container'>
   <form >
-
-
-    <table class="table">
-
+    <table class="tb">
       <tbody>
       <tr>
         <td>
@@ -48,14 +43,14 @@ Lagerbestand
 
         </td>
       </tr>
+
       <tr>
 
         <td>
           Menge
 
         <td>
-        <input type="number" id="inputQuantity" name="quantity" min="1">
-
+          <input type="number" id="quantity" name="quantity" min="1">
         </td>
       </tr>
       <tr>
@@ -80,14 +75,26 @@ Lagerbestand
       </tbody>
     </table>
   </form>
+<br>
+  <br>
+  <br>
+  <br>
 
-  <button id = "save" onclick="save_lagerbestand()">speichern</button>
+  <table class="table">
+    <thead>
+    <th>Name</th><th>Menge</th><th>Fachnr.</th>
+    </thead>
+    <tbody id="table"></tbody>
+  </table>
 
-  <a href="http://localhost:8080/lagerbestandtabelle">
+  <button id = "save" onclick="addItem()">speichern</button>
+
+  <a href="http://localhost:8080/doctor/lagerbestandtabelle">
     <button>Tabelle</button>
   </a>
 
 
+
 </div>
-<script src="static/lagerbestand/lagerbestand.js"></script>
+<script src="/lagerbestand/lagerbestand.js"></script>
 </body>
