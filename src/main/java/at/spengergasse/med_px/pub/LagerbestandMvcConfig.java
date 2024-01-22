@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class LagerbestandMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/formular").setViewName("/lagerbestand/createLagerbestand");
-        registry.addViewController("/lagerbestandtabelle").setViewName("/lagerbestand/lagerbestandTabelle");
+        registry.addViewController("/doctor/lagerbestandformular").setViewName("/lagerbestand/createLagerbestand");
+        registry.addViewController("/doctor/lagerbestandtabelle").setViewName("/lagerbestand/lagerbestandTabelle");
     }
 
 }

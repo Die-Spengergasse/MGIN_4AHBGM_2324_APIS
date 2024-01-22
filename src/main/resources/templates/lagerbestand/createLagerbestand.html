@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 5 Example</title>
+  <title>Verbrauchsmaterial Lagerbestand</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@ Lagerbestand
   <form >
 
 
-    <table class="table">
+    <table class="tb">
 
       <tbody>
       <tr>
@@ -54,7 +54,7 @@ Lagerbestand
           Menge
 
         <td>
-        <input type="number" id="inputQuantity" name="quantity" min="1">
+        <input type="number" id="quantity" name="quantity" min="1">
 
         </td>
       </tr>
@@ -81,13 +81,23 @@ Lagerbestand
     </table>
   </form>
 
-  <button id = "save" onclick="save_lagerbestand()">speichern</button>
+  <br>
+  <br>
 
-  <a href="http://localhost:8080/lagerbestandtabelle">
+  <table class="table">
+    <thead>
+    <th>Name</th><th>Verbrauchsmaterial</th><th>Menge</th><th>Fachnr.</th>
+    </thead>
+    <tbody id="tabelle"></tbody>
+  </table>
+
+  <button id = "save" onclick="addItem()">speichern</button>
+
+  <a href="http://localhost:8080/doctor/lagerbestandtabelle">
     <button>Tabelle</button>
   </a>
 
 
 </div>
-<script src="static/lagerbestand/lagerbestand.js"></script>
+<script src="/lagerbestand/lagerbestand.js"></script>
 </body>
