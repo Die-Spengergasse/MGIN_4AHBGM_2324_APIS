@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class MeasuredValue {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String name;     // name of the measured value
     private String unit;     // unit of the measured value
     private double value;    // value of the measured value

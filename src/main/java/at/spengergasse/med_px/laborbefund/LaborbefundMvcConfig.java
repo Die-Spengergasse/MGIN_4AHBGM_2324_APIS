@@ -9,5 +9,6 @@ public class LaborbefundMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/doctor/laborbefund").setViewName("laborbefund/laborbefund");
+        registry.addViewController("/doctor/create_laborbefund").setViewName("laborbefund/create_laborbefund");
     }
 }
