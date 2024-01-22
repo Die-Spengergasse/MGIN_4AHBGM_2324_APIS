@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="chirurgdesign.css">
+    <link rel="stylesheet" href="/surgery/chirurgdesign.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <th:block th:insert="~{masterpage/masterpage :: assets}"/>
 </head>
@@ -57,11 +57,21 @@
 
         <button id="save">Speichern</button>
         <button type="reset">Neu</button>
+        <table id="tabelle1">
+            <tr>
+                <th>Patient</th>
+                <th>Arzt</th>
+                <th>Fall</th>
+                <th>Eingriff</th>
+                <th>Datum</th>
+                <th>Buttons</th>
+            </tr>
+        </table>
     </form>
-    <a href="http://localhost:8080/Surgeryhtml.html">
+    <a href="http://localhost:8080/doctor/surgerytb">
         <button>Tabelle</button>
     </a>
 </div>
-<script src="Surgery2js.js"></script>
+<script src="/surgery/Surgery2js.js"></script>
 </body>
 </html>
