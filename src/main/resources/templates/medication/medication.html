@@ -7,8 +7,9 @@
   <script src="medikation.js"></script>
   <script src="medikation_other.js"></script>
 </head>
-<body  onload="load_medikamente()">
-<div class="container">
+<body  onload="load_medikamente()" style="background-color: #f3d4e1;">
+<div th:replace="~{/masterpage/masterpage :: menu}"/>
+  <div class="container">
   <h1>Medikament Liste</h1>
   <table class="table">
     <thead>
@@ -22,6 +23,5 @@
   </table>
   <a href="create_medication.html">new medication</a>
 </div>
-<h1>First Page</h1>
 </body>
 </html>
